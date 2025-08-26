@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soniq 🎵</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts opcionales -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&family=Montserrat:wght@400;700&family=Lora:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <h1 class="logo">Soniq</h1>
+    <div class="actions">
+      <button id="loginBtn" class="btn">Iniciar sesión con Spotify</button>
+      <button id="configBtn" class="icon-btn" title="Configuración">⚙️</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <nav>
+        <button class="nav-btn active" data-view="home">Inicio</button>
+        <button class="nav-btn" data-view="search">Buscar</button>
+        <button class="nav-btn" data-view="library">Biblioteca</button>
+      </nav>
+      <div class="profile" id="profileBox">
+        <div class="avatar"></div>
+        <div>
+          <div class="me-name" id="meName">Invitado</div>
+          <div class="me-id" id="meId">Sesión no iniciada</div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <!-- HOME -->
+      <section id="view-home" class="view active">
+        <h2>Descubre</h2>
+        <div id="homePlaylists" class="grid"></div>
+      </section>
+
+      <!-- SEARCH -->
+      <section id="view-search" class="view">
+        <div class="searchbar">
+          <input id="searchInput" type="text" placeholder="Buscar canciones, artistas, álbumes…"/>
+          <button id="searchBtn" class="btn">Buscar</button>
+        </div>
+        <div id="results" class="grid grid-tracks"></div>
+      </section>
+
+      <!-- LIBRARY (playlists locales) -->
+      <section id="view-library" class="view">
+        <div class="library-head">
+          <input id="newPlName" type="text" placeholder="Nombre de playlist"/>
+          <button id="createPlBtn" class="btn">Crear playlist</button>
+        </div>
+        <div id="playlists" class="grid"></div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Reproductor flotante -->
+  <div class="player">
+    <div class="player-meta">
+      <img id="cover" alt="cover" />
+      <div>
+        <div id="trackTitle" class="title">Nada reproduciéndose</div>
+        <div id="trackArtist" class="artist">—</div>
+      </div>
+    </div>
+    <div class="player-visual">
+      <div class="bars" id="bars">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="player-ctrls">
+      <button id="prevBtn" class="icon-btn" title="Anterior">⏮️</button>
+      <button id="playBtn" class="icon-btn" title="Reproducir/Pausar">▶️</button>
+      <button id="nextBtn" class="icon-btn" title="Siguiente">⏭️</button>
+      <input id="progress" type="range" min="0" max="100" value="0" />
+      <audio id="audio" crossorigin="anonymous"></audio>
+    </div>
+  </div>
+
+  <!-- Panel de configuración -->
+  <dialog id="configDialog">
+    <form method="dialog" class="config">
+      <h3>⚙️ Configuración</h3>
+
+      <label>Tema
+        <select id="themeSelect">
+          <option value="light">Claro</option>
+          <option value="dark">Oscuro</option>
+        </select>
+      </label>
+
+      <label>Color de acento
+        <input id="accentInput" type="color" value="#00bcd4"/>
+      </label>
+
+      <label>Fuente
+        <select id="fontSelect">
+          <option value="'Poppins', sans-serif">Poppins</option>
+          <option value="'Roboto', sans-serif">Roboto</option>
+          <option value="'Montserrat', sans-serif">Montserrat</option>
+          <option value="'Lora', serif">Lora</option>
+          <option value="'Nunito', sans-serif">Nunito</option>
+        </select>
+      </label>
+
+      <label>Idioma
+        <select id="langSelect">
+          <option value="es">Español</option>
+          <option value="en">Inglés</option>
+        </select>
+      </label>
+
+      <label>Calidad de audio
+        <select id="qualitySelect">
+          <option value="high">Alta</option>
+          <option value="medium">Media</option>
+          <option value="low">Baja</option>
+        </select>
+      </label>
+
+      <menu>
+        <button id="closeConfig" class="btn">Cerrar</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
